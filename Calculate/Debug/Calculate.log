@@ -1,0 +1,5 @@
+﻿  MyForm.cpp
+C:\Users\User\source\repos\creativeWork\Calculate\MyForm.h(227): warning C4715: Calculate::MyForm::checkInputTextBox1: значение возвращается не при всех путях выполнения
+C:\Users\User\source\repos\creativeWork\Calculate\MyForm.h(238): warning C4715: Calculate::MyForm::checkInputTextBox2: значение возвращается не при всех путях выполнения
+  MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  Calculate.vcxproj -> C:\Users\User\source\repos\creativeWork\Debug\Calculate.exe

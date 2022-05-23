@@ -1,0 +1,27 @@
+﻿  main.cpp
+c:\users\user\source\repos\creativework\kommi\functions.h(17): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(25): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(73): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(80): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(96): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(97): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(104): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(105): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(122): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(134): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(138): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(139): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(170): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(171): warning C4244: аргумент: преобразование "const T" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+c:\users\user\source\repos\creativework\kommi\functions.h(213): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(217): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\user\source\repos\creativework\kommi\functions.h(219): warning C4018: <: несоответствие типов со знаком и без знака
+  Kommi.vcxproj -> C:\Users\User\source\repos\creativeWork\Debug\Kommi.exe
