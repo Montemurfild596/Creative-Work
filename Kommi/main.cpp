@@ -19,7 +19,6 @@ Font font;
 
 
 int main() {
-	// настройка окна, загрузка шрифта
 	setlocale(LC_ALL, "Rus");
 	font.loadFromFile("calibri.ttf");
 	ContextSettings settings;
@@ -36,7 +35,7 @@ int main() {
 		vector<int> { 13, 47, 9, 31, 1, 23, _INF }
 	};
 	vector<wstring> names = { L"1", L"2", L"3", L"4", L"5", L"6", L"7" };
-	vector<wstring> buttonNames = { L"Ввод матрицы", L"Добавить", L"Удалить" };
+	vector<wstring> buttonNames = { L"Р’РІРѕРґ РјР°С‚СЂРёС†С‹", L"Р”РѕР±Р°РІРёС‚СЊ", L"РЈРґР°Р»РёС‚СЊ" };
 
 	Graph g(matrix, names, font);
 	Apex* movingApex = nullptr;
@@ -84,7 +83,7 @@ int main() {
 					showWayInfo(g, names);
 				}
 				else {
-					cout << "Максимальное количество вершин, невозможно добавить!" << endl;
+					cout << "РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ, РЅРµРІРѕР·РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ!" << endl;
 				}
 				});
 
@@ -98,7 +97,7 @@ int main() {
 					showWayInfo(g, names);
 				}
 				else {
-					std::cout << "Дальнейшее удаление невозможно!" << endl;
+					std::cout << "Р”Р°Р»СЊРЅРµР№С€РµРµ СѓРґР°Р»РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ!" << endl;
 				}
 				});
 
@@ -111,7 +110,7 @@ int main() {
 		g.snapEdgesToVerts();
 		move(movingApex, cursorPos, 600, 500);
 
-		// отрисовка всех объектов
+		// РѕС‚СЂРёСЃРѕРІРєР° РІСЃРµС… РѕР±СЉРµРєС‚РѕРІ
 		for (unsigned int i = 0; i < g.edgeList.size(); ++i) {
 			g.edgeList[i].draw(window);
 		}
