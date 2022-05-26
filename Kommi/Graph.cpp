@@ -2,12 +2,12 @@
 
 
 
-// конструктор без параметров
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 Graph::Graph() {}
 
 
 
-// конструктор с параметрами
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 Graph::Graph(vector<vector<int>>& tempMatrix, const vector<wstring>& names, const sf::Font& font) {
 
 	this->adjMatrix.assign(tempMatrix[0].size(), vector<int>(tempMatrix[0].size()));
@@ -39,27 +39,27 @@ Graph::Graph(vector<vector<int>>& tempMatrix, const vector<wstring>& names, cons
 
 
 
-// деструктор
+// РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 Graph::~Graph() {}
 
 
 
 
-// количество вершин
+// РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ
 int Graph::getCountVertex() {
 	return this->adjMatrix.size();
 }
 
 
 
-// количество путей
+// РєРѕР»РёС‡РµСЃС‚РІРѕ РїСѓС‚РµР№
 int Graph::getCountEdges() {
 	return this->edgeList.size();
 }
 
 
 
-// поиск минимального элемента столбца
+// РїРѕРёСЃРє РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° СЃС‚РѕР»Р±С†Р°
 int Graph::minElemOfColumn(vector<vector<int>> matrix, const int& index) {
 	int minimum = _INF;
 	for (int i = 0; i < this->getCountVertex(); ++i) {
@@ -70,7 +70,7 @@ int Graph::minElemOfColumn(vector<vector<int>> matrix, const int& index) {
 
 
 
-// поиск минимального элемента строки
+// РїРѕРёСЃРє РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° СЃС‚СЂРѕРєРё
 int Graph::minElemOfRow(vector<vector<int>> matrix, const int& index) {
 	int minimum = _INF;
 	for (int i = 0; i < this->getCountVertex(); ++i) {
@@ -81,15 +81,15 @@ int Graph::minElemOfRow(vector<vector<int>> matrix, const int& index) {
 
 
 
-// проверка графа на пустоту
+// РїСЂРѕРІРµСЂРєР° РіСЂР°С„Р° РЅР° РїСѓСЃС‚РѕС‚Сѓ
 bool Graph::isAdjMatrixNotEmpty(vector<vector<int>> matrix) {
 	bool isFind = false;
 	int checkInf = _INF;
 	for (int i = 0; i < this->getCountVertex(); ++i) {
 		for (int j = 0; j < this->getCountVertex(); ++j) {
-			// если хоть один элемент будет с нормальным значением
+			// РµСЃР»Рё С…РѕС‚СЊ РѕРґРёРЅ СЌР»РµРјРµРЅС‚ Р±СѓРґРµС‚ СЃ РЅРѕСЂРјР°Р»СЊРЅС‹Рј Р·РЅР°С‡РµРЅРёРµРј
 			if (matrix[i][j] != checkInf) {
-				// то возвращаем true
+				// С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµРј true
 				isFind = true;
 			}
 		}
@@ -99,7 +99,7 @@ bool Graph::isAdjMatrixNotEmpty(vector<vector<int>> matrix) {
 
 
 
-// получение путей для коммивояжёра
+// РїРѕР»СѓС‡РµРЅРёРµ РїСѓС‚РµР№ РґР»СЏ РєРѕРјРјРёРІРѕСЏР¶С‘СЂР°
 vector<pair<int, int>> Graph::getRoads() {
 	int checkInf = _INF;
 	vector<pair<int, int>> wayParts;
@@ -112,10 +112,10 @@ vector<pair<int, int>> Graph::getRoads() {
 		}
 	}
 
-	// пока матрица смежности не пуста
+	// РїРѕРєР° РјР°С‚СЂРёС†Р° СЃРјРµР¶РЅРѕСЃС‚Рё РЅРµ РїСѓСЃС‚Р°
 	while (this->isAdjMatrixNotEmpty(tempMatrix)) {
 
-		// проводим редукцию строк
+		// РїСЂРѕРІРѕРґРёРј СЂРµРґСѓРєС†РёСЋ СЃС‚СЂРѕРє
 		vector<int> minRowList;
 		for (int i = 0; i < this->getCountVertex(); ++i) {
 			minRowList.push_back(this->minElemOfRow(tempMatrix, i));
@@ -127,12 +127,13 @@ vector<pair<int, int>> Graph::getRoads() {
 				}
 			}
 		}
-
+		
+		// РїСЂРѕРІРѕРґРёРј СЂРµРґСѓРєС†РёСЋ СЃС‚РѕР»Р±С†РѕРІ
 		vector<int> minColList;
 		for (int i = 0; i < this->getCountVertex(); ++i) {
 			minColList.push_back(this->minElemOfColumn(tempMatrix, i));
 		}
-		// проводим редукцию столбцов
+		
 		for (int i = 0; i < this->getCountVertex(); ++i) {
 			for (int j = 0; j < this->getCountVertex(); ++j) {
 				if (tempMatrix[i][j] != checkInf) {
@@ -142,7 +143,7 @@ vector<pair<int, int>> Graph::getRoads() {
 		}
 
 
-		// оценивание при помощи уменьшения нулевых ячеек
+		// РѕС†РµРЅРёРІР°РЅРёРµ РїСЂРё РїРѕРјРѕС‰Рё СѓРјРµРЅСЊС€РµРЅРёСЏ РЅСѓР»РµРІС‹С… СЏС‡РµРµРє
 		for (int i = 0; i < this->getCountVertex(); ++i) {
 			for (int j = 0; j < this->getCountVertex(); ++j) {
 				if (tempMatrix[i][j] <= 0) {
@@ -151,7 +152,7 @@ vector<pair<int, int>> Graph::getRoads() {
 			}
 		}
 
-		//поиск наибольшей оценки(наименьшей)
+		// РїРѕРёСЃРє РЅР°РёР±РѕР»СЊС€РµР№ РѕС†РµРЅРєРё(РЅР°РёРјРµРЅСЊС€РµР№)
 		int maxGrade = _INF;
 		int maxGrade_i = _INF;
 		int maxGrade_j = _INF;
@@ -165,10 +166,10 @@ vector<pair<int, int>> Graph::getRoads() {
 			}
 		}
 
-		// добавление найденного пути в итоговый массив
+		// РґРѕР±Р°РІР»РµРЅРёРµ РЅР°Р№РґРµРЅРЅРѕРіРѕ РїСѓС‚Рё РІ РёС‚РѕРіРѕРІС‹Р№ РјР°СЃСЃРёРІ
 		wayParts.push_back(pair<int, int>{ maxGrade_i, maxGrade_j });
 
-		// очистка столбца и строки, элемент на пересечении которого был зафиксирован
+		// РѕС‡РёСЃС‚РєР° СЃС‚РѕР»Р±С†Р° Рё СЃС‚СЂРѕРєРё, СЌР»РµРјРµРЅС‚ РЅР° РїРµСЂРµСЃРµС‡РµРЅРёРё РєРѕС‚РѕСЂРѕРіРѕ Р±С‹Р» Р·Р°С„РёРєСЃРёСЂРѕРІР°РЅ
 		for (int i = 0; i < this->getCountVertex(); ++i) {
 			for (int j = 0; j < this->getCountVertex(); ++j) {
 				if (i == maxGrade_i) {
@@ -191,7 +192,7 @@ vector<pair<int, int>> Graph::getRoads() {
 
 
 
-// сортировка пар вершин
+// СЃРѕСЂС‚РёСЂРѕРІРєР° РїР°СЂ РІРµСЂС€РёРЅ
 vector<pair<int, int>> Graph::sortRoads(const int& number) {
 	int index = number - 1;
 	vector<pair<int, int>> roads = this->getRoads();
@@ -212,7 +213,7 @@ vector<pair<int, int>> Graph::sortRoads(const int& number) {
 
 
 
-// соединение концов рёбер с вершинами
+// СЃРѕРµРґРёРЅРµРЅРёРµ РєРѕРЅС†РѕРІ СЂС‘Р±РµСЂ СЃ РІРµСЂС€РёРЅР°РјРё
 void Graph::snapEdgesToVerts() {
 	int counter = 0;
 	for (int i = 0; i < this->getCountVertex(); ++i) {
@@ -227,7 +228,7 @@ void Graph::snapEdgesToVerts() {
 
 
 
-// отрисовка пути коммивояжёра
+// РѕС‚СЂРёСЃРѕРІРєР° РїСѓС‚Рё РєРѕРјРјРёРІРѕСЏР¶С‘СЂР°
 void Graph::drawHamiltoneCycle() {
 	std::vector<pair<int, int>> wayParts = this->getRoads();
 	for (int i = 0; i < wayParts.size(); ++i) {
@@ -242,7 +243,7 @@ void Graph::drawHamiltoneCycle() {
 
 
 
-// обновление графа в окне
+// РѕР±РЅРѕРІР»РµРЅРёРµ РіСЂР°С„Р° РІ РѕРєРЅРµ
 void Graph::update(vector<vector<int>>& tempMatrix, const vector<wstring>& namesOfEdges, const sf::Font& font) {
 	this->edgeList.erase(this->edgeList.begin(), this->edgeList.end());
 	this->adjMatrix.assign(tempMatrix[0].size(), vector<int>(tempMatrix[0].size()));
