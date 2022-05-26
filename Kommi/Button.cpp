@@ -2,7 +2,7 @@
 
 
 
-// конструктор с параметрами
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 Button::Button(std::wstring& text, sf::Font& font) {
 	this->info.setString(text);
 	this->info.setFont(font);
@@ -16,14 +16,14 @@ Button::Button(std::wstring& text, sf::Font& font) {
 
 
 
-// деструктор
+// РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 Button::~Button() {
 
 }
 
 
 
-// установка позиции кнопки
+// СѓСЃС‚Р°РЅРѕРІРєР° РїРѕР·РёС†РёРё РєРЅРѕРїРєРё
 void Button::setPosition(const float& x, const float& y) {
 	this->form.setPosition(x - this->form.getLocalBounds().width / 2, y - this->form.getLocalBounds().height / 2);
 	this->info.setPosition(x - this->info.getLocalBounds().width / 2, y - this->info.getLocalBounds().height);
@@ -31,15 +31,14 @@ void Button::setPosition(const float& x, const float& y) {
 
 
 
-// обработка нажатия на кнопку
+// РѕР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ РЅР° РєРЅРѕРїРєСѓ
 void Button::buttonEvent(const sf::Vector2i& cursorPos, sf::Clock& clock, const sf::Event& event, std::function<void()> action) {
 	if (this->form.getGlobalBounds().contains(cursorPos.x, cursorPos.y)) {
 		float time = clock.getElapsedTime().asMilliseconds();
 		bool isActive = true;
 		if (time < 5.f) {
 			isActive = false;
-		}
-		else {
+		} else {
 			clock.restart();
 			isActive = true;
 		}
@@ -64,7 +63,7 @@ void Button::buttonEvent(const sf::Vector2i& cursorPos, sf::Clock& clock, const 
 
 
 
-// отрисовка кнопка
+// РѕС‚СЂРёСЃРѕРІРєР° РєРЅРѕРїРєРё
 void Button::draw(sf::RenderWindow& window) {
 	window.draw(this->form);
 	window.draw(this->info);
