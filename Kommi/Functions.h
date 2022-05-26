@@ -71,7 +71,7 @@ std::vector<std::vector<int>> addVertex(std::vector<std::vector<int>>& matrix, s
 	}
 	matrix.back() = std::vector<int>(matrix.size()); 
 	std::wcout << names.back() << endl;
-	//names.push_back(std::to_wstring(std::stoi(names.back()) + 1));
+	names.push_back(std::to_wstring(std::stoi(names.back()) + 1));
 	int temp;
 	for (int i = 0; i < matrix.size() - 1; ++i) {
 		std::cout << "Введите длину дороги из ";
