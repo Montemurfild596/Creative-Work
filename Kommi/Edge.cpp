@@ -2,12 +2,12 @@
 
 
 
-// êîíñòðóêòîð áåç ïàðàìåòðîâ
+// ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Ð±ÐµÐ· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
 Edge::Edge() {}
 
 
 
-// êîíñòðóêòîð ñ ïàðàìåòðàìè
+// ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸
 Edge::Edge(const sf::Font& font, const int& length) {
 	this->weight = length;
 	this->info = sf::Text(L""/* + std::to_string(this->weight)*/, font, 15);
@@ -20,40 +20,40 @@ Edge::Edge(const sf::Font& font, const int& length) {
 
 
 
-// äåñòðóêòîð
+// Ð´ÐµÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€
 Edge::~Edge() {}
 
 
 
-// ïîëó÷åíèå ñðåäíåé òî÷êè ìåæäó äâóìÿ òî÷êàìè
+// Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ ÑÑ€ÐµÐ´Ð½ÐµÐ¹ Ñ‚Ð¾Ñ‡ÐºÐ¸ Ð¼ÐµÐ¶Ð´Ñƒ Ð´Ð²ÑƒÐ¼Ñ Ð´Ñ€ÑƒÐ³Ð¸Ð¼Ð¸
 sf::Vector2f Edge::getCenter(const sf::Vector2f& first, const sf::Vector2f& second) {
 	return sf::Vector2f((first.x + second.x) / 2, (first.y + second.y) / 2);
 }
 
 
 
-// ïîëó÷åíèå íà÷àëüíîé êîîðäèíàòû
+// Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¾Ð¹ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð¿ÑƒÑ‚Ð¸
 sf::Vector2f Edge::getFirstPoint() {
 	return this->edge[0].position;
 }
 
 
 
-// ïîëó÷åíèå êîíå÷íîé êîîðäèíàòû
+// Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ ÐºÐ¾Ð½ÐµÑ‡Ð½Ð¾Ð¹ ÐºÐ¾Ð¾Ñ€Ð´Ð¸Ð½Ð°Ñ‚Ñ‹ Ð¿ÑƒÑ‚Ð¸
 sf::Vector2f Edge::getSecondPoint() {
 	return this->edge[1].position;
 }
 
 
 
-// ïîëó÷åíèå âåñà ðåáðà
+// Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð²ÐµÑÐ° Ñ€ÐµÐ±Ñ€Ð°
 int Edge::getWeight() {
 	return this->weight;
 }
 
 
 
-// óñòàíîâêà ïîçèöèè ðåáðà
+// ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ñ€ÐµÐ±Ñ€Ð°
 void Edge::setPosition(const sf::Vector2f& first, const sf::Vector2f& second) {
 	this->edge[0].position = first; this->edge[1].position = second;
 	this->info.setPosition(getCenter(this->edge[0].position, this->edge[1].position));
@@ -61,7 +61,7 @@ void Edge::setPosition(const sf::Vector2f& first, const sf::Vector2f& second) {
 
 
 
-// óñòàíîâêà öâåòà ðåáðà
+// ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ñ†Ð²ÐµÑ‚Ð° Ñ€ÐµÐ±Ñ€Ð°
 void Edge::setFillColor(const sf::Color& color) {
 	edge[0].color = color;
 	edge[1].color = color;
@@ -69,7 +69,7 @@ void Edge::setFillColor(const sf::Color& color) {
 
 
 
-// îòðèñîâêà ðåáðà
+// Ð¾Ñ‚Ñ€Ð¸ÑÐ¾Ð²ÐºÐ° Ñ€ÐµÐ±Ñ€Ð°
 void Edge::draw(sf::RenderWindow& window) {
 	window.draw(this->edge, 2, sf::Lines);
 	window.draw(this->info);
