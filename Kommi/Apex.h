@@ -13,7 +13,6 @@ private:
 	sf::CircleShape circle;
 	sf::Text text;
 	float radius;
-	//Sprite sprite;
 
 public:
 
