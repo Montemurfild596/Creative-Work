@@ -7,17 +7,13 @@
 
 
 
-//
-
-
-
 void showWayInfo(Graph& g, std::vector<std::wstring>& names) {
 	std::vector<pair<int, int>> wayParts = g.getRoads();
-	std::cout << "Отрезки гамильтонова цикла:" << endl;
+	std::cout << "РћС‚СЂРµР·РєРё РіР°РјРёР»СЊС‚РѕРЅРѕРІР° С†РёРєР»Р°:" << endl;
 	for (int i = 0; i < wayParts.size(); ++i) {
 		std::wcout << names[wayParts[i].first] << L"  ->  " << names[wayParts[i].second] << endl;
 	}
-	std::cout << endl << "Наименьший путь коммивояжёра с началом в точке ";
+	std::cout << endl << "РџСѓС‚СЊ РєРѕРјРјРёРІРѕСЏР¶С‘СЂР° РёР· С‚РѕС‡РєРё ";
 	std::wcout << names[0];
 	std::cout << ": ";
 	wayParts = g.sortRoads(1);
@@ -31,7 +27,7 @@ void showWayInfo(Graph& g, std::vector<std::wstring>& names) {
 
 std::vector<std::vector<int>> inputMatrix(std::vector<std::wstring>& names) {
 	int vertiXCount;
-	cout << "Введите количество вершин: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ: ";
 	cin >> vertiXCount;
 	std::vector<std::vector<int>> matrix(vertiXCount);
 	for (int i = 0; i < vertiXCount; ++i) {
@@ -46,7 +42,7 @@ std::vector<std::vector<int>> inputMatrix(std::vector<std::wstring>& names) {
 	for (int i = 0; i < vertiXCount; ++i) {
 		for (int j = i + 1; j < vertiXCount; ++j) {
 			if (i != j) {
-				cout << "Введите длину дороги между " << i + 1 << " вершиной и " << j + 1 << " вершиной: ";
+				cout << "Р’РІРµРґРёС‚Рµ РґР»РёРЅСѓ РґРѕСЂРѕРіРё РјРµР¶РґСѓ " << i + 1 << " РІРµСЂС€РёРЅРѕР№ Рё " << j + 1 << " РІРµСЂС€РёРЅРѕР№: ";
 				cin >> temp;
 				if (temp <= 0) {
 					matrix[i][j] = _INF;
@@ -78,9 +74,9 @@ std::vector<std::vector<int>> addVertex(std::vector<std::vector<int>>& matrix, s
 	//names.push_back(std::to_wstring(std::stoi(names.back()) + 1));
 	int temp;
 	for (int i = 0; i < matrix.size() - 1; ++i) {
-		std::cout << "Введите длину дороги из ";
+		std::cout << "Р’РІРµРґРёС‚Рµ РґР»РёРЅСѓ РґРѕСЂРѕРіРё РёР· ";
 		std::wcout << names[i];
-		std::cout << " в ";
+		std::cout << " РІ ";
 		std::wcout << names.back();
 		std::cout << ": ";
 		cin >> temp;
@@ -117,7 +113,7 @@ std::vector<std::vector<int>> removeVertex(std::vector<std::vector<int>>& matrix
 	bool isFind = false;
 	int reverseVert;
 	do {
-		cout << "Введите вершину для удаления: ";
+		cout << "Р’РІРµРґРёС‚Рµ РІРµСЂС€РёРЅСѓ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ: ";
 		cin >> reverseVert;
 		for (int i = 0; i < names.size() && !isFind; ++i) {
 			if (std::to_wstring(reverseVert) == names[i]) {
@@ -126,7 +122,7 @@ std::vector<std::vector<int>> removeVertex(std::vector<std::vector<int>>& matrix
 			}
 		}
 		if (!isFind) {
-			std::cout << "Такой вершины нет, повторите ввод!" << endl;
+			std::cout << "РўР°РєРѕР№ РІРµСЂС€РёРЅС‹ РЅРµС‚, РїРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ" << endl;
 		}
 	} while (!isFind);
 
@@ -163,7 +159,7 @@ std::vector<std::vector<int>> removeVertex(std::vector<std::vector<int>>& matrix
 
 
 
-// выбор вершины для движения
+// РІС‹Р±РѕСЂ РІРµСЂС€РёРЅС‹ РґР»СЏ РґРІРёР¶РµРЅРёСЏ
 void getMove(Apex*& movingApex, std::vector<Apex>& vertList, const sf::Event& event, const sf::Vector2i& cursorPos) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		if (event.key.code == sf::Mouse::Left) {
@@ -183,7 +179,7 @@ void getMove(Apex*& movingApex, std::vector<Apex>& vertList, const sf::Event& ev
 
 
 
-// движение вершины
+// РґРІРёР¶РµРЅРёРµ РІРµСЂС€РёРЅС‹
 void move(Apex*& movingApex, const sf::Vector2i& cursorPos, const int& windowWidth, const int& windowHeight) {
 	if (movingApex != nullptr) {
 		float dx = cursorPos.x - movingApex->getLocalBounds().width / 2;
@@ -206,9 +202,9 @@ void move(Apex*& movingApex, const sf::Vector2i& cursorPos, const int& windowWid
 
 
 
-// вывод матрицы смежности в консоли
+// РІС‹РІРѕРґ РјР°С‚СЂРёС†С‹ СЃРјРµР¶РЅРѕСЃС‚Рё РІ РєРѕРЅСЃРѕР»СЊ
 void printInfo(std::vector<std::vector<int>>& matrix, std::vector<std::wstring>& names) {
-	std::cout << "Матрица смежности:";
+	std::cout << "РњР°С‚СЂРёС†Р° СЃРјРµР¶РЅРѕСЃС‚Рё:";
 	std::cout << '\n' << '\t';
 	for (int i = 0; i < matrix.size(); ++i) {
 		std::wcout << names[i] << '\t';
