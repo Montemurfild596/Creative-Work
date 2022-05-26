@@ -9,12 +9,12 @@ using namespace std;
 
 
 
-// конструктор без параметров
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
 Apex::Apex() {}
 
 
 
-// конструктор копирования
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 Apex::Apex(const Apex& temp) {
 	this->circle = temp.circle;
 	this->text = temp.text;
@@ -22,7 +22,7 @@ Apex::Apex(const Apex& temp) {
 
 
 
-// конструктор с параметрами
+// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
 Apex::Apex(const sf::String& text, const sf::Font& font) {
 	this->text = sf::Text(L"" + text, font, 15);
 	this->text.setFillColor(sf::Color::Black);
@@ -33,12 +33,12 @@ Apex::Apex(const sf::String& text, const sf::Font& font) {
 
 
 
-// деструктор
+// РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 Apex::~Apex() {}
 
 
 
-// перегрузка оператора присваивания
+// РїРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
 Apex& Apex::operator=(const Apex& temp) {
 	this->circle = temp.circle;
 	this->text = temp.text;
@@ -47,35 +47,35 @@ Apex& Apex::operator=(const Apex& temp) {
 
 
 
-// получение границ вершины
+// РїРѕР»СѓС‡РµРЅРёРµ РіСЂР°РЅРёС† РІРµСЂС€РёРЅС‹
 sf::FloatRect Apex::getLocalBounds() {
 	return this->circle.getLocalBounds();
 }
 
 
 
-// получение границ вершины в глобальной системе координат
+// РїРѕР»СѓС‡РµРЅРёРµ РіСЂР°РЅРёС† РІРµСЂС€РёРЅС‹ РІ РіР»РѕР±Р°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјРµ РєРѕРѕСЂРґРёРЅР°С‚
 sf::FloatRect Apex::getGlobalBounds() {
 	return this->circle.getGlobalBounds();
 }
 
 
 
-// получение позиции вершины
+// РїРѕР»СѓС‡РµРЅРёРµ РїРѕР·РёС†РёРё РІРµСЂС€РёРЅС‹
 sf::Vector2f Apex::getPosition() {
 	return this->circle.getPosition();
 }
 
 
 
-// получение позиции центра вершины
+// РїРѕР»СѓС‡РµРЅРёРµ РїРѕР·РёС†РёРё С†РµРЅС‚СЂР° РІРµСЂС€РёРЅС‹
 sf::Vector2f Apex::getCenter() {
 	return sf::Vector2f(this->circle.getPosition().x + (this->circle.getLocalBounds().width / 2), this->circle.getPosition().y + (this->circle.getLocalBounds().height / 2));
 }
 
 
 
-// расстановка графа
+// СЂР°СЃСЃС‚Р°РЅРѕРІРєР° РіСЂР°С„Р°
 void Apex::getPolygonSpread(std::vector<Apex>& vertexList, const sf::Vector2f& SPREAD_CENTER, const int& SPREAD_RADIUS) {
 	const float PI = acosf(-1);
 	for (int i = 0; i < vertexList.size(); ++i) {
@@ -85,7 +85,7 @@ void Apex::getPolygonSpread(std::vector<Apex>& vertexList, const sf::Vector2f& S
 
 
 
-// установка вершины по заданным координатам
+// СѓСЃС‚Р°РЅРѕРІРєР° РІРµСЂС€РёРЅС‹ РїРѕ Р·Р°РґР°РЅРЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°РјРѕС‚СЂРёСЃРѕРІРєР° РІРµСЂС€РёРЅС‹
 void Apex::setPosition(float x, float y) {
 	this->circle.setPosition(x, y);
 	this->text.setPosition(x + (this->circle.getLocalBounds().width / 2) - (this->text.getLocalBounds().width / 2), y + (this->circle.getLocalBounds().height / 2) - (this->text.getLocalBounds().height));
@@ -93,7 +93,7 @@ void Apex::setPosition(float x, float y) {
 
 
 
-// отрисовка вершины
+// РѕС‚СЂРёСЃРѕРІРєР° РІРµСЂС€РёРЅС‹
 void Apex::draw(sf::RenderWindow& window) {
 	window.draw(this->circle);
 	window.draw(this->text);
