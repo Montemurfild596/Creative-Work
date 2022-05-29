@@ -139,7 +139,7 @@ std::vector<std::vector<int>> removeVertex(std::vector<std::vector<int>>& matrix
 			}
 			else if (i < reverseVert && j > reverseVert) {
 				copy[i][j - 1] = matrix[i][j];
-				copy[i - 1][j] = matrix[i][j];
+				copy[j - 1][i] = matrix[i][j];
 			}
 			else if (i > reverseVert && j > reverseVert) {
 				copy[i - 1][j - 1] = matrix[i][j];
