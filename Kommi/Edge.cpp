@@ -56,6 +56,7 @@ int Edge::getWeight() {
 // установка ребра
 void Edge::setPosition(const sf::Vector2f& first, const sf::Vector2f& second) {
 	this->edge[0].position = first; this->edge[1].position = second;
+	// информация о весе ребра устанавливается посередине ребра
 	this->info.setPosition(getCenter(this->edge[0].position, this->edge[1].position));
 }
 
