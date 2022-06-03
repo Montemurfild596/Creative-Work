@@ -32,14 +32,14 @@ void Button::setPosition(const float& x, const float& y) {
 
 
 // обработка нажатия на кнопку
-void Button::buttonEvent(const sf::Vector2i& cursorPos, sf::Clock& clock, const sf::Event& event, std::function<void()> action) {
-	if (this->form.getGlobalBounds().contains(cursorPos.x, cursorPos.y)) {
-		float time = clock.getElapsedTime().asMilliseconds();
+void Button::buttonEvent(const sf::Vector2i& cursorPos, sf::Clock& timer, const sf::Event& event, std::function<void()> action) {
+	if (this->form.getGlobalBounds().contains(cursorPos.x, cursorPos.y)) { // если координата мыши входят в кнопку
+		float time = timer.getElapsedTime().asMilliseconds();
 		bool isActive = true;
 		if (time < 5.f) {
 			isActive = false;
 		} else {
-			clock.restart();
+			timer.restart();
 			isActive = true;
 		}
 		this->form.setOutlineThickness(3.f);
@@ -47,15 +47,13 @@ void Button::buttonEvent(const sf::Vector2i& cursorPos, sf::Clock& clock, const 
 			if (event.key.code == sf::Mouse::Left && isActive) {
 				this->form.setFillColor(sf::Color(97, 160, 58));
 			}
-		}
-		else if (event.type == sf::Event::MouseButtonReleased && isActive) {
+		} else if (event.type == sf::Event::MouseButtonReleased && isActive) {
 			if (event.key.code == sf::Mouse::Left) {
 				this->form.setFillColor(sf::Color(171, 121, 85));
 				action();
 			}
 		}
-	}
-	else {
+	} else {
 		this->form.setOutlineThickness(2.f);
 		this->form.setFillColor(sf::Color(97, 160, 58));
 	}
