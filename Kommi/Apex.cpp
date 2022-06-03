@@ -76,10 +76,11 @@ sf::Vector2f Apex::getCenter() {
 
 
 // расстановка графа
-void Apex::getPolygonSpread(std::vector<Apex>& vertexList, const sf::Vector2f& SPREAD_CENTER, const int& SPREAD_RADIUS) {
+void Apex::getPolygonSpread(std::vector<Apex>& vertexList, const sf::Vector2f& CENTER, const int& RADIUS) {
 	const float PI = acosf(-1);
+	// расстановка всех вершин по кругу
 	for (int i = 0; i < vertexList.size(); ++i) {
-		vertexList[i].setPosition(SPREAD_CENTER.x + SPREAD_RADIUS * cosf(2 * PI * i / vertexList.size()), SPREAD_CENTER.y + SPREAD_RADIUS * sinf(2 * PI * i / vertexList.size()));
+		vertexList[i].setPosition(CENTER.x + RADIUS * cosf(2 * PI * i / vertexList.size()), CENTER.y + RADIUS * sinf(2 * PI * i / vertexList.size()));
 	}
 }
 
@@ -88,6 +89,7 @@ void Apex::getPolygonSpread(std::vector<Apex>& vertexList, const sf::Vector2f& S
 // установка вершины по заданным координатамотрисовка вершины
 void Apex::setPosition(float x, float y) {
 	this->circle.setPosition(x, y);
+	// имя вершины ставится посередине вершины
 	this->text.setPosition(x + (this->circle.getLocalBounds().width / 2) - (this->text.getLocalBounds().width / 2), y + (this->circle.getLocalBounds().height / 2) - (this->text.getLocalBounds().height));
 }
 
