@@ -70,7 +70,20 @@ int main() {
 				g.drawHamiltoneCycle();
 				printInfo(g.adjMatrix, names);
 				showWayInfo(g, names);
-				});
+			});
+			
+			deleteButton.buttonEvent(cursorPos, timer, event, [&g, &names]()->void {
+				if (g.adjMatrix.size() > 3) {
+					system("cls");
+					std::vector<std::vector<int>> matrix = removeVertex(g.adjMatrix, names);
+					g.update(matrix, names, font);
+					g.drawHamiltoneCycle();
+					printInfo(g.adjMatrix, names);
+					showWayInfo(g, names);
+				} else {
+					std::cout << "Дальнейшее удаление невозможно!" << endl;
+				}
+			});
 
 			addButton.buttonEvent(cursorPos, timer, event, [&g, &names]()->void {
 				if (g.adjMatrix.size() < 10) {
@@ -81,25 +94,10 @@ int main() {
 					g.drawHamiltoneCycle();
 					printInfo(g.adjMatrix, names);
 					showWayInfo(g, names);
-				}
-				else {
+				} else {
 					cout << "Максимальное количество вершин, невозможно добавить!" << endl;
 				}
-				});
-
-			deleteButton.buttonEvent(cursorPos, timer, event, [&g, &names]()->void {
-				if (g.adjMatrix.size() > 3) {
-					system("cls");
-					std::vector<std::vector<int>> matrix = removeVertex(g.adjMatrix, names);
-					g.update(matrix, names, font);
-					g.drawHamiltoneCycle();
-					printInfo(g.adjMatrix, names);
-					showWayInfo(g, names);
-				}
-				else {
-					std::cout << "Дальнейшее удаление невозможно!" << endl;
-				}
-				});
+			});
 
 			getMove(movingApex, g.vertexList, event, cursorPos);
 
