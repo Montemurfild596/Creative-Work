@@ -7,15 +7,23 @@
 
 
 
+void printInfo(std::vector<std::vector<int>>& matrix, std::vector<std::wstring>& names);
+void showWayInfo(Graph& g, std::vector<std::wstring>& names);
+std::vector<std::vector<int>> inputMatrix(std::vector<std::wstring>& names);
+std::vector<std::vector<int>> addVertex(std::vector<std::vector<int>>& matrix, std::vector<std::wstring>& names);
+std::vector<std::vector<int>> removeVertex(std::vector<std::vector<int>>& matrix, std::vector<std::wstring>& names);
+void getMove(Apex*& movingApex, std::vector<Apex>& vertList, const sf::Event& event, const sf::Vector2i& cursorPos);
+void move(Apex*& movingApex, const sf::Vector2i& cursorPos, const int& windowWidth, const int& windowHeight);
+
+
+
 void showWayInfo(Graph& g, std::vector<std::wstring>& names) {
 	std::vector<pair<int, int>> wayParts = g.getRoads();
 	std::cout << "Отрезки гамильтонова цикла:" << endl;
 	for (int i = 0; i < wayParts.size(); ++i) {
 		std::wcout << names[wayParts[i].first] << L"  ->  " << names[wayParts[i].second] << endl;
 	}
-	std::cout << endl << "Путь коммивояжёра из точки ";
-	std::wcout << names[0];
-	std::cout << ": ";
+	std::cout << endl << "Путь коммивояжёра :";
 	wayParts = g.sortRoads(1);
 	std::wcout << names[wayParts[0].first];
 	for (int i = 0; i < wayParts.size(); ++i) {
@@ -33,11 +41,13 @@ std::vector<std::vector<int>> inputMatrix(std::vector<std::wstring>& names) {
 	for (int i = 0; i < vertiXCount; ++i) {
 		matrix[i] = std::vector<int>(vertiXCount);
 	}
+	
 	names.erase(names.begin(), names.end());
 	names.resize(vertiXCount);
 	for (int i = 0; i < vertiXCount; ++i) {
 		names[i] = std::to_wstring(i + 1);
 	}
+	
 	int temp = 0;
 	for (int i = 0; i < vertiXCount; ++i) {
 		for (int j = i + 1; j < vertiXCount; ++j) {
@@ -47,17 +57,15 @@ std::vector<std::vector<int>> inputMatrix(std::vector<std::wstring>& names) {
 				if (temp <= 0) {
 					matrix[i][j] = _INF;
 					matrix[j][i] = _INF;
-				}
-				else {
+				} else {
 					matrix[i][j] = temp;
 					matrix[j][i] = temp;
 				}
-			}
-			else matrix[i][j] = _INF;
+			} else matrix[i][j] = _INF;
 
 		}
-		names.push_back(std::to_wstring(i + 1));
 	}
+	cout << names.size() << endl;
 	return matrix;
 }
 
@@ -69,9 +77,9 @@ std::vector<std::vector<int>> addVertex(std::vector<std::vector<int>>& matrix, s
 	for (int i = 0; i < matrix.size(); ++i) {
 		matrix[i].resize(matrix[i].size() + 1);
 	}
-	matrix.back() = std::vector<int>(matrix.size()); 
-	std::wcout << names.back() << endl;
+	matrix.back() = std::vector<int>(matrix.size());
 	names.push_back(std::to_wstring(std::stoi(names.back()) + 1));
+	
 	int temp;
 	for (int i = 0; i < matrix.size() - 1; ++i) {
 		std::cout << "Введите длину дороги из ";
@@ -83,27 +91,13 @@ std::vector<std::vector<int>> addVertex(std::vector<std::vector<int>>& matrix, s
 		if (temp <= 0) {
 			matrix[i].back() = _INF;
 			matrix.back()[i] = _INF;
-		}
-		else {
+		} else {
 			matrix[i].back() = temp;
 			matrix.back()[i] = temp;
 		}
 	}
-	for (int i = 0; i < matrix.size(); ++i) {
-		for (int j = 0; j < matrix.size(); ++j) {
-			cout << matrix[i][j] << ' ';
-		}
-		cout << endl;
-	}
-	cout << endl;
 	matrix.back().back() = _INF;
-	for (int i = 0; i < matrix.size(); ++i) {
-		for (int j = 0; j < matrix.size(); ++j) {
-			cout << matrix[i][j] << ' ';
-		}
-		cout << endl;
-	}
-	cout << endl;
+	
 	return matrix;
 }
 
@@ -122,31 +116,29 @@ std::vector<std::vector<int>> removeVertex(std::vector<std::vector<int>>& matrix
 			}
 		}
 		if (!isFind) {
-			std::cout << "Такой вершины нет, повторите ввод" << endl;
+			std::cout << "Такой вершины нет, повторите ввод!" << endl;
 		}
 	} while (!isFind);
-
+	
 	std::vector<std::vector<int>> copy(matrix.size() - 1);
 	for (int i = 0; i < copy.size(); ++i) {
 		copy[i] = std::vector<int>(copy.size());
 	}
-
 	for (int i = 0; i < matrix.size(); ++i) {
 		for (int j = i; j < matrix.size(); ++j) {
 			if (i < reverseVert && j < reverseVert) {
 				copy[i][j] = matrix[i][j];
 				copy[j][i] = matrix[i][j];
-			}
-			else if (i < reverseVert && j > reverseVert) {
+			} else if (i < reverseVert && j > reverseVert) {
 				copy[i][j - 1] = matrix[i][j];
 				copy[j - 1][i] = matrix[i][j];
-			}
-			else if (i > reverseVert && j > reverseVert) {
+			} else if (i > reverseVert && j > reverseVert) {
 				copy[i - 1][j - 1] = matrix[i][j];
 			}
 		}
 	}
 	matrix = copy;
+	
 	int i = 0;
 	for (auto iter = names.begin(); i <= reverseVert; ++i, ++iter) {
 		if (i == reverseVert) {
@@ -169,8 +161,7 @@ void getMove(Apex*& movingApex, std::vector<Apex>& vertList, const sf::Event& ev
 				}
 			}
 		}
-	}
-	else if (event.type == sf::Event::MouseButtonReleased) {
+	} else if (event.type == sf::Event::MouseButtonReleased) {
 		if (event.key.code == sf::Mouse::Left) {
 			movingApex = nullptr;
 		}
@@ -202,7 +193,7 @@ void move(Apex*& movingApex, const sf::Vector2i& cursorPos, const int& windowWid
 
 
 
-// вывод матрицы смежности в консоль
+// вывод матрицы смежности в консоли
 void printInfo(std::vector<std::vector<int>>& matrix, std::vector<std::wstring>& names) {
 	std::cout << "Матрица смежности:";
 	std::cout << '\n' << '\t';
@@ -215,8 +206,7 @@ void printInfo(std::vector<std::vector<int>>& matrix, std::vector<std::wstring>&
 		for (int j = 0; j < matrix.size(); ++j) {
 			if (matrix[i][j] == _INF) {
 				std::cout << 'N' << '\t';
-			}
-			else  std::cout << matrix[i][j] << '\t';
+			} else  std::cout << matrix[i][j] << '\t';
 		}
 		std::cout << '\n';
 	}
